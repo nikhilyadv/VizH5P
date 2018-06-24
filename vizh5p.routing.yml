@@ -1,0 +1,7 @@
+vizh5p.post:
+  path: 'node/vizh5p/postjson'
+  defaults: { _controller: '\Drupal\vizh5p\Controller\XAPIController::passtodb' }
+  methods:  [POST]
+  requirements:
+    _access: 'TRUE'
+

@@ -1,0 +1,4 @@
+h5pCapture:
+  version: 1.x
+  js:
+    js/Capture.js: {}
