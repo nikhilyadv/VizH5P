@@ -49,4 +49,19 @@ class savetoDB {
 		//Execute query
 		return $query->execute();
 	}
+	
+	/**
+	 * Get the compelete table from VizH5P in the form of array.
+	 */
+
+	public function get() {
+		//Select database using drupal inbuit APIs
+		$query = db_select('vizh5p' , 'v');
+		$data = $query
+				->fields('v' , array('time','content_id','actor','verb'))
+				->orderBy('time' , 'ASC')
+				->execute()->fetchAll();
+		return $data;
+	}
+
 }

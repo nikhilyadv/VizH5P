@@ -1,7 +1,14 @@
+vizh5p.plot:
+  path: '/vizh5p/plot'
+  defaults: 
+    _title: 'Result Page'
+    _form: '\Drupal\vizh5p\Form\GraphForm' 
+  requirements:
+    _permission: 'access content'
+
 vizh5p.post:
   path: 'node/vizh5p/postjson'
   defaults: { _controller: '\Drupal\vizh5p\Controller\XAPIController::passtodb' }
   methods:  [POST]
   requirements:
     _access: 'TRUE'
-
