@@ -23,6 +23,10 @@ class GraphForm extends FormBase {
    * Function to build form and display the user the related table and graph  
    */  
   public function buildForm(array $form, FormStateInterface $form_state) {
+   	//Attaching js to the form
+    $form['#attached']['library'][] = 'vizh5p/plotlylib';
+    $form['#attached']['library'][] = 'vizh5p/Graph';
+    
     //Select the database Service and get the table
     $db_logic = \Drupal::service('vizh5p.db_logic');
     $data = $db_logic->get();
@@ -122,7 +126,12 @@ class GraphForm extends FormBase {
     }    
     else
       $form['table'][] = array();
-    
+
+  	//Container to display the graph
+    $form['graph'] = array(
+    	'#markup' => '<div id="graph"></div?>',
+    );
+
     return $form;
   }
   /**

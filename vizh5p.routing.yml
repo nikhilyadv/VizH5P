@@ -12,3 +12,10 @@ vizh5p.post:
   methods:  [POST]
   requirements:
     _access: 'TRUE'
+
+vizh5p.get:
+  path: '/vizh5p/getjson'
+  defaults: { _controller: '\Drupal\vizh5p\Controller\GraphController::getjson' }
+  methods:  [POST]
+  requirements:
+    _access: 'TRUE'

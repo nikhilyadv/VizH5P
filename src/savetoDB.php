@@ -63,5 +63,19 @@ class savetoDB {
 				->execute()->fetchAll();
 		return $data;
 	}
+	
+	/**
+	 * Selecting the rows of the table which match with our content id and username
+	 */
 
+	public function fetch($cid , $actor) {
+		$query = db_select('vizh5p' , 'v');
+		$data = $query
+				->fields('v' , array('time','content_id','actor','verb'))
+				->condition('content_id' , $cid)
+				->condition('actor', $actor)
+				->orderBy('time' , 'ASC')
+				->execute()->fetchAll();
+		return $data;
+	} 
 }
