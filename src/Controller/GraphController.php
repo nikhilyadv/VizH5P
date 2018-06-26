@@ -30,7 +30,6 @@ class GraphController extends ControllerBase {
 
     $datauserarray = array();
     $datacidarray = array();
-    $dataattemptarray = array();
     //selecting distinct content id
     foreach ($data as $d) {
         if(!in_array($d->content_id , $datacidarray))
@@ -47,13 +46,7 @@ class GraphController extends ControllerBase {
     sort($datauserarray);
     $actor = $datauserarray[$params['username']];           //Finding the username
 
-    foreach ($data as $d) {                                 //Checking attempt number
-     if($d->content_id == $cid && $d->actor == $actor && $d->verb == 'attempted') {
-        $i++;
-        array_push($dataattemptarray , $i);
-     }
-    }
-    $attempt = $dataattemptarray[$params['attempt']];
+    $attempt = $params['attempt'];
     
     $response = array();
     
