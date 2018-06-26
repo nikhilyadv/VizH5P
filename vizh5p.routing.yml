@@ -4,7 +4,7 @@ vizh5p.plot:
     _title: 'Result Page'
     _form: '\Drupal\vizh5p\Form\GraphForm' 
   requirements:
-    _permission: 'access content'
+    _role: 'administrator'
 
 vizh5p.post:
   path: 'node/vizh5p/postjson'
