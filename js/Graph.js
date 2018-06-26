@@ -2,7 +2,7 @@
   Drupal.behaviors.myBehavior = {
     attach: function (context, settings) {
       Graph = document.getElementById('graph');
-      $('[name="attempt"]').on('change', function() {
+      $('[name="attempt"]').once().on('change', function() {
         var content_id = $('[name="content_id"]').val().trim();
         var username = $('[name="username"]').val().trim();
         var attempt = $('[name="attempt"]').val().trim();
@@ -18,8 +18,6 @@
             data: obj,
             contentType: "application/json",
             success: function(data) {  
-              console.log(obj);
-              console.log(data);
               TESTER = document.getElementById('graph');
               var attempted = -1;
               var answered = -1;
