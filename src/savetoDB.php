@@ -36,7 +36,12 @@ class savetoDB {
 		if (empty($content_id) || empty($actor) || empty($verb)){
 			return FALSE;
 		}
-		$date = date('Y-m-d H:i:s');
+
+		//Getting time in microseconds in year month day hour minute second and microsecond format
+		$micro_date = \Drupal::time()->getRequestMicroTime();
+		$date_array = explode(".",$micro_date);
+		$date = date("Y-m-d H:i:s") . "." . $date_array[1];
+
 		//Select database using drupal inbuit APIs
 		$query = $this->database->insert('vizh5p');         
 		//Add fields
