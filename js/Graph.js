@@ -18,28 +18,28 @@
             data: obj,
             contentType: "application/json",
             success: function(data) {
-              var x = ["Time Taken to Interact","Time Taken to Answer"]
+              var x = ["Time Taken to Interact","Interaction Time","Number of Interactions","Time Taken to Answer"]
               var plotdata = [
                 {
                   histfunc: "sum",
                   y: data[0],
                   x: x,
                   type: "histogram",
-                  name: "Content ID avg"
+                  name: "Average of all users"
                 },
                 {
                   histfunc: "sum",
                   y: data[1],
                   x: x,
                   type: "histogram",
-                  name: "User avg in this content ID"
+                  name: "User's average"
                 },
                 {
                   histfunc: "sum",
                   y: data[2],
                   x: x,
                   type: "histogram",
-                  name: "Curent Attempt result"
+                  name: "Current attempt"
                 }
               ]
               Plotly.newPlot('graph', plotdata)  

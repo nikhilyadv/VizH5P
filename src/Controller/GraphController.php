@@ -104,19 +104,25 @@ class GraphController extends ControllerBase {
           $t2 = strtotime($i1time[0]) . "." . $i1time[1];
           $t3 = strtotime($i2time[0]) . "." . $i2time[1];
           $t4 = strtotime($antime[0]) . "." . $antime[1];
-          array_push($c , array($t2 - $t1 , $t4 - $t3));
+          array_push($c , array($t2 - $t1 , $t3 - $t2 , $len - 2, $t4 - $t3));
         }
       }
     }
     $length = count($c);
     $response[0][0] = 0;
     $response[0][1] = 0;
+    $response[0][2] = 0;
+    $response[0][3] = 0;
     for($i = 0 ; $i < $length ; $i++){
       $response[0][0] += $c[$i][0];
       $response[0][1] += $c[$i][1];
+      $response[0][2] += $c[$i][2];
+      $response[0][3] += $c[$i][3];
     }
     $response[0][0] /= $length;
     $response[0][1] /= $length;
+    $response[0][2] /= $length;
+    $response[0][3] /= $length;
     
     $length = count($data);
     for($i = 0 ; $i < $length ; $i++){
@@ -144,19 +150,25 @@ class GraphController extends ControllerBase {
           $t2 = strtotime($i1time[0]) . "." . $i1time[1];
           $t3 = strtotime($i2time[0]) . "." . $i2time[1];
           $t4 = strtotime($antime[0]) . "." . $antime[1];
-          array_push($cu , array($t2 - $t1 , $t4 - $t3));
+          array_push($cu , array($t2 - $t1 , $t3 - $t2 , $len - 2 , $t4 - $t3));
         }
       }
     }
     $length = count($cu);
     $response[1][0] = 0;
     $response[1][1] = 0;
+    $response[1][2] = 0;
+    $response[1][3] = 0;
     for($i = 0 ; $i < $length ; $i++){
       $response[1][0] += $cu[$i][0];
       $response[1][1] += $cu[$i][1];
+      $response[1][2] += $cu[$i][2];
+      $response[1][3] += $cu[$i][3];
     }
     $response[1][0] /= $length;
     $response[1][1] /= $length;
+    $response[1][2] /= $length;
+    $response[1][3] /= $length;
 
     $i = 0;
     foreach ($data as $d) {                                 //Checking attempt number
@@ -168,6 +180,8 @@ class GraphController extends ControllerBase {
     $case = findtype($cua);
     $response[2][0] = 0;
     $response[2][1] = 0;
+    $response[2][2] = 0;
+    $response[2][3] = 0;
     if($case == "2") {
       $atime = $temp[0]->time;
       $i1time = $temp[1]->time;
@@ -177,6 +191,7 @@ class GraphController extends ControllerBase {
       $t2 = strtotime($i1time[0]) . "." . $i1time[1];
       $cua = array($t2 - $t1);
       $response[2][0] = $cua[0];
+      $response[2][2] = 1;
     } elseif($case == "4") {
       $len = count($cua);
       $atime = $cua[0]->time;
@@ -191,9 +206,11 @@ class GraphController extends ControllerBase {
       $t2 = strtotime($i1time[0]) . "." . $i1time[1];
       $t3 = strtotime($i2time[0]) . "." . $i2time[1];
       $t4 = strtotime($antime[0]) . "." . $antime[1];
-      $cua = array($t2 - $t1 , $t4 - $t3);
+      $cua = array($t2 - $t1 , $t3 - $t2 , $len - 2 , $t4 - $t3);
       $response[2][0] = $cua[0];
       $response[2][1] = $cua[1];
+      $response[2][2] = $cua[2];
+      $response[2][3] = $cua[3];
     }
 
     return new JsonResponse( $response );
